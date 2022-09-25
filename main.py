@@ -1,5 +1,4 @@
 from pytube import YouTube, Playlist
-from pytube.cli import on_progress
 from pytube.exceptions import VideoUnavailable
 import os
 import datetime
@@ -17,7 +16,7 @@ def downloadYoutubePlaylistAsMP3Files(playlist_link, download_destination="."):
 
 def downloadYoutubeVideoAsMP3(video_link, download_destination="."):
     try:
-        yt = YouTube(video_link, on_progress_callback=on_progress)
+        yt = YouTube(video_link)
     except VideoUnavailable:
         print("❌ SKIPPED BECAUSE VIDEO IS NOT AVAILABLE")
     else:
@@ -36,10 +35,10 @@ def downloadYoutubeVideoAsMP3(video_link, download_destination="."):
                 print("✔ SUCCESS! ⚪ " + yt.title + " ⚪")
 
 
-# video_link = "https://www.youtube.com/watch?v=Ds5VyIitOQM&list=PL0NjZB3CLfQhEI6IWbHrdoADGPfz6Ofm0&index=13"
+# video_link = ""
 # downloadYoutubeVideoAsMP3(video_link)
 
-playlist_link = "https://www.youtube.com/playlist?list=PL0NjZB3CLfQhEI6IWbHrdoADGPfz6Ofm0"
+playlist_link = ""
 download_destination = "D:\Music"
 downloadYoutubePlaylistAsMP3Files(playlist_link, os.path.join(download_destination,
                                                               datetime.datetime.now().strftime('%d-%m-%Y %H.%M')))
